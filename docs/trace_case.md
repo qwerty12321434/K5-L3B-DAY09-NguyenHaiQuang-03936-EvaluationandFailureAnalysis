@@ -5,7 +5,7 @@ Người làm: Nguyễn Hải Quang · 2A202603936. Bằng chứng tái lập v�
 | Trường | Kết quả |
 |---|---|
 | Trial lỗi | seeded_regression C-002@11, run `R-seeded_regression-C-002-s11` |
-| Report eval | `E-seeded_regression-20261118-0afd`, item E-002, eval-set SHA `0afd38b24e4b` |
+| Report eval | `E-seeded_regression-20261118-4ecc`, item E-002, eval-set SHA `4ecc36e3edce` |
 | Triệu chứng | Lab8 FAIL: `status resolved != denied`; refund_amount_correct=false, db_fact_kept=false. Ledger 20000 VND thay vì label 0 VND. |
 | Bước sai đầu tiên | **Event 3, model_override**, payload `{"delay_days": 5}`. |
 | Failure mode | FM-03 ticket_trust — xem [taxonomy](failure_taxonomy.md). |

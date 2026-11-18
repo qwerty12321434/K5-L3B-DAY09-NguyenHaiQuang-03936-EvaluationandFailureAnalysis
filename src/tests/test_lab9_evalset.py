@@ -57,3 +57,12 @@ def test_check_rejects_missing_tags(tmp_path, evalset_cli):
     result = evalset_cli("--check")
     assert result.returncode == 1, result.stdout + result.stderr
     assert "failure_modes empty" in result.stdout
+
+
+def test_build_uses_lf_bytes_for_portable_eval_set_hashes(tmp_path, evalset_cli):
+    result = evalset_cli("--build")
+    assert result.returncode == 0
+    for name in ("eval_set_v1.jsonl", "labels_v1.json"):
+        data = (tmp_path / "data/eval" / name).read_bytes()
+        assert b"\n" in data
+        assert b"\r" not in data
