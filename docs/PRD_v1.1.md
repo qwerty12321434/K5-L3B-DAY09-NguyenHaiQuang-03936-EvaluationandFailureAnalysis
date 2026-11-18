@@ -21,7 +21,7 @@ Ngoài phạm vi: giao dịch thật, tự cấp approval, claim nhiều đơn, 
 
 ## 3. Định nghĩa chạy đúng
 
-Spec `1.1`, eval-set v1 SHA `0afd38b24e4b`. Cột baseline lấy từ run `E-swarm-20261118-0afd`.
+Spec `1.1`, eval-set v1 SHA `4ecc36e3edce`. Cột baseline lấy từ run `E-swarm-20261118-4ecc`.
 
 | Metric | Loại / cấp | Ngưỡng trong spec | Chặn release | Baseline |
 |---|---|---|---|---|
@@ -59,9 +59,9 @@ FM-08 so số tiền xác nhận với ledger, còn refund_amount_correct so led
 python -m lab9.gate --pr reports/eval_pr.json --baseline reports/baseline_v1.json --spec config/metric_spec.yaml
 ```
 
-Baseline hiện tại: `E-swarm-20261118-0afd`. Trong quy trình PR, baseline phải là bản swarm đã review/commit trên main; PR và baseline dùng cùng SHA eval set, spec và đầy đủ item×seed. Ở lần bootstrap repo đầu tiên, baseline được sinh trên nhánh làm bài, kiểm bằng ci_check rồi đưa vào main qua PR.
+Baseline hiện tại: `E-swarm-20261118-4ecc`. Trong quy trình PR, baseline phải là bản swarm đã review/commit trên main; PR và baseline dùng cùng SHA eval set, spec và đầy đủ item×seed. Ở lần bootstrap repo đầu tiên, baseline được sinh trên nhánh làm bài, kiểm bằng ci_check rồi đưa vào main qua PR.
 
-Kết quả kiểm chứng: fixed `E-fixed-20261118-0afd` exit 0; seeded_regression `E-seeded_regression-20261118-0afd` exit 1, pass_rate Δ=-0.271429, CI [-0.500000; -0.057143]. Nguồn: [baseline](../src/reports/baseline_v1.json), [fixed](../src/reports/eval_fixed.json), [regression](../src/reports/eval_seeded_regression.json). Định danh run và cách tái lập xem [eval_card.md](eval_card.md).
+Kết quả kiểm chứng: fixed `E-fixed-20261118-4ecc` exit 0; seeded_regression `E-seeded_regression-20261118-4ecc` exit 1, pass_rate Δ=-0.271429, CI [-0.500000; -0.057143]. Nguồn: [baseline](../src/reports/baseline_v1.json), [fixed](../src/reports/eval_fixed.json), [regression](../src/reports/eval_seeded_regression.json). Định danh run và cách tái lập xem [eval_card.md](eval_card.md).
 
 Eval owner Nguyễn Hải Quang xử lý gate exit 1: đọc trace/ledger, xác định lỗi agent hay grader/data, sửa nguồn, chạy lại và đưa bằng chứng vào PR. Không sửa tay reports hoặc nới sàn trên cùng version. Trong lab, waiver chỉ được xem xét khi có chấp thuận rõ ràng của giảng viên/coach, nêu phạm vi, lý do và rủi ro trong PR; hiện chưa có waiver nào được phê duyệt.
 
@@ -91,7 +91,7 @@ Tài liệu được viết bằng Markdown, số liệu đối chiếu các rep
 
 ## 8. Bổ sung v2: slice, độ ổn định và tính toàn vẹn
 
-Eval set v2 có 28 item × 5 seed, SHA `2c1c22132416`; baseline run `E-swarm-20261118-2c1c`. Metric spec 2.0 mở một eval-set version mới; các sàn trong v1 giữ nguyên. Spec v2 kế thừa sàn refund_amount_correct=0,90 từ starter của đề, thêm reply_ledger_consistent=1,0, pass_hat_5≥0,85 và các slice blocking money_movement≥0,95, adversarial≥0,85, denial≥0,90; mỗi slice còn kiểm paired CI của pass_rate không giảm có ý nghĩa.
+Eval set v2 có 28 item × 5 seed, SHA `b81a6c9a9448`; baseline run `E-swarm-20261118-b81a`. Metric spec 2.0 mở một eval-set version mới; các sàn trong v1 giữ nguyên. Spec v2 kế thừa sàn refund_amount_correct=0,90 từ starter của đề, thêm reply_ledger_consistent=1,0, pass_hat_5≥0,85 và các slice blocking money_movement≥0,95, adversarial≥0,85, denial≥0,90; mỗi slice còn kiểm paired CI của pass_rate không giảm có ý nghĩa.
 
 Gate phải cho fixed và refactor trung thực qua; chặn seeded_regression, slice_regression và flaky_regression. A/A trên seeds 11/22/33/44/55 và 66/77/88/99/110 có mọi Δ=0; pass_hat_5=0,8929 ở cả hai phía. Sàn 0,85 thấp hơn mức ổn định quan sát 0,0429 và cao hơn yêu cầu tối thiểu 0,80. Xem [eval card](eval_card.md) để kiểm scorecard, bảng metric và giới hạn cỡ mẫu.
 

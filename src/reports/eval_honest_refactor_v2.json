@@ -1,9 +1,9 @@
 {
-  "run_id": "E-honest_refactor-20261118-2c1c",
+  "run_id": "E-honest_refactor-20261118-b81a",
   "shape": "honest_refactor",
   "manifest": {
     "eval_set": "data/eval/eval_set_v2.jsonl",
-    "eval_set_sha": "2c1c22132416",
+    "eval_set_sha": "b81a6c9a9448",
     "items": 28,
     "seeds": [
       11,

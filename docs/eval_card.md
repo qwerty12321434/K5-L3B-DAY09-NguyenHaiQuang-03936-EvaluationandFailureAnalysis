@@ -5,11 +5,13 @@ Eval owner: Nguyễn Hải Quang · 2A202603936.
 ## Phiên bản và nguồn bằng chứng
 
 - Code Core được kiểm chứng: commit `e4ada3674400431d05deb9d76cc62b57bc6c3e8f` (M4); tài liệu hoàn thiện trong commit kế tiếp.
-- Baseline run: `E-swarm-20261118-0afd`; fixed: `E-fixed-20261118-0afd`; regression: `E-seeded_regression-20261118-0afd`.
-- Eval set v1 SHA: `0afd38b24e4b`; 14 item × 5 seed = 70 trial/shape. Seeds `[11, 22, 33, 44, 55]`; source lab8_public; labels tách tại `data/eval/labels_v1.json`.
+- Baseline run: `E-swarm-20261118-4ecc`; fixed: `E-fixed-20261118-4ecc`; regression: `E-seeded_regression-20261118-4ecc`.
+- Eval set v1 SHA: `4ecc36e3edce`; 14 item × 5 seed = 70 trial/shape. Seeds `[11, 22, 33, 44, 55]`; source lab8_public; labels tách tại `data/eval/labels_v1.json`.
 - Metric spec `1.1`; harness map 1.2. Thêm metric FM-08 blocking; không nới ngưỡng cũ.
 - Source Day08: commit `034c6c421c198dae67a9211d15e2587d5a378972` trong lịch sử repo local, trước thay đổi ba shape của nhóm; giữ nguyên toàn bộ 28 file lab8.
 - Môi trường chạy: python=3.11.9, pydantic-evals=2.68.0, numpy=2.4.6, scipy=1.17.1, PyYAML=6.0.3, pytest=8.4.2. MockLLM + judge replay, không dùng API key, không cấu hình Langfuse/OTel.
+
+Eval set được ghi UTF-8 với LF cố định trên Windows/Linux và có .gitattributes giữ LF khi checkout. Các report được sinh lại bằng harness sau khi chuẩn hóa xuống dòng; item, nhãn, ngưỡng và số liệu metric không đổi. SHA và hậu tố run ID ở đây là của bản LF dùng trên CI.
 
 ## Metric và kết quả
 
@@ -90,7 +92,7 @@ Gate fixed phải exit 0, seeded_regression phải exit 1. Tài liệu là Markd
 
 Code v2 được kiểm chứng: commit `b5b10fd542c17d7ba5a2183d55d093de5ba8b5ee` (M7); các commit M5/M6 nằm ngay trước đó.
 
-Eval set v2 SHA `2c1c22132416` có 28 item: giữ đủ 14 item v1 và thêm 14 adversarial item, 5 seeds `[11,22,33,44,55]`, tổng 140 trial/shape. Nhãn tách trong `labels_v2.json`. Mapping và số item/FM xem taxonomy; `lab9.evalset --v2 --build` và `--v2 --check` đều trả 0 problem. Metric spec 2.0, không sửa spec v1 hoặc baseline v1.
+Eval set v2 SHA `b81a6c9a9448` có 28 item: giữ đủ 14 item v1 và thêm 14 adversarial item, 5 seeds `[11,22,33,44,55]`, tổng 140 trial/shape. Nhãn tách trong `labels_v2.json`. Mapping và số item/FM xem taxonomy; `lab9.evalset --v2 --build` và `--v2 --check` đều trả 0 problem. Metric spec 2.0, không sửa spec v1 hoặc baseline v1.
 
 | Metric / slice | Baseline swarm | slice_regression | flaky_regression | honest_refactor |
 |---|---|---|---|---|
@@ -106,7 +108,7 @@ Eval set v2 SHA `2c1c22132416` có 28 item: giữ đủ 14 item v1 và thêm 14 
 | denial / pass_rate | 0.945455 | 1.000000 | 0.927273 | 1.000000 |
 | cost_per_success (VND mô phỏng) | 50.8077 | 52.9053 | 54.1453 | 57.7186 |
 
-Run ID theo thứ tự cột: `E-swarm-20261118-2c1c`, `E-slice_regression-20261118-2c1c`, `E-flaky_regression-20261118-2c1c`, `E-honest_refactor-20261118-2c1c`. Nguồn: [baseline v2](../src/reports/baseline_v2.json), [slice regression](../src/reports/eval_slice_regression_v2.json), [flaky regression](../src/reports/eval_flaky_regression_v2.json), [honest refactor](../src/reports/eval_honest_refactor_v2.json). Safety approval_bypass và secret_leak đều 0 trong bốn report; không lấy điều đó thay cho capability checks.
+Run ID theo thứ tự cột: `E-swarm-20261118-b81a`, `E-slice_regression-20261118-b81a`, `E-flaky_regression-20261118-b81a`, `E-honest_refactor-20261118-b81a`. Nguồn: [baseline v2](../src/reports/baseline_v2.json), [slice regression](../src/reports/eval_slice_regression_v2.json), [flaky regression](../src/reports/eval_flaky_regression_v2.json), [honest refactor](../src/reports/eval_honest_refactor_v2.json). Safety approval_bypass và secret_leak đều 0 trong bốn report; không lấy điều đó thay cho capability checks.
 
 ### M5 — Vì sao cần slice
 
