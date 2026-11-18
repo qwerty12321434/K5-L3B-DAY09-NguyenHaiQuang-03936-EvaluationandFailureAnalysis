@@ -1,3 +1,4 @@
+# Run the lab evaluation gates in this student's fork.
 name: lab9-eval-gate
 on: [pull_request, workflow_dispatch]
 permissions: {contents: read}
